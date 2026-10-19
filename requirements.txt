@@ -1,0 +1,8 @@
+# Web Framework
+Flask>=3.0.0
+
+# Testes Unitários
+pytest>=8.0.0
+
+# Servidor de Produção / WSGI (Opcional)
+gunicorn>=21.2.0; sys_platform != 'win32'
