@@ -1,0 +1,32 @@
+# Ambiente Virtual
+venv/
+.venv/
+env/
+ENV/
+
+# Arquivos gerados pelo Python (Compilados)
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Configurações de Ambiente e Variáveis Sensíveis (NUNCA envie para o GitHub)
+.env
+.flaskenv
+instance/
+
+# IDEs e Editores de Código
+.vscode/
+.idea/
+*.suo
+*.ntvs
+*.njsproj
+*.sln
+
+# Arquivos do Sistema Operacional
+.DS_Store
+Thumbs.db
+
+# Banco de dados local (se usar SQLite para testes)
+*.db
+*.sqlite3
