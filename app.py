@@ -11,6 +11,10 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
+@app.route('/equipe')
+def equipe():
+    return render_template('equipe.html')
+
 
 @app.route('/binario', methods=['GET', 'POST'])
 def pagina_binario():
