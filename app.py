@@ -5,7 +5,7 @@ from conversor_binario import converter_binario
 from conversor_hexadecimal import converter_hexadecimal
 from conversor_octal import converter_octal
 
-from conversor_decimal import decimal_para_binario
+from conversor_decimal import converter_decimal
 
 app = Flask(__name__)
 
@@ -62,28 +62,21 @@ def pagina_hexadecimal():
     )
     
 @app.route('/decimal', methods=['GET', 'POST'])
-def pagina_decimal():    
-    resultado = None
+def pagina_decimal():
+    resultados = None
     erro = None
     numero = ""
 
     if request.method == 'POST':
         numero = request.form.get('numero', '').strip()
-
         try:
-            valor = int(numero)
-
-            if valor < 0:
-                raise ValueError("Número negativo.")
-
-            resultado = decimal_para_binario(valor)
-
-        except ValueError:
-            erro = "Digite um número inteiro válido e não negativo."
+            resultados = converter_decimal(numero)
+        except ValueError as e:
+            erro = str(e)
 
     return render_template(
         'decimal.html',
-        resultado=resultado,
+        resultados=resultados,
         erro=erro,
         numero=numero
     )
