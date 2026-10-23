@@ -3,6 +3,7 @@ from flask import Flask, render_template, request # 1. Importe o render_template
 from conversor_binario import converter_binario
 
 from conversor_hexadecimal import converter_hexadecimal
+from conversor_octal import converter_octal
 
 app = Flask(__name__)
 
@@ -57,6 +58,19 @@ def pagina_hexadecimal():
         erro=erro,
         numero=numero
     )
+
+@app.route('/octal', methods=['GET', 'POST'])
+def octal():
+    if request.method == 'POST':
+        numero = request.form.get('numero', '').strip()
+        
+        try:
+            resultados = converter_octal(numero)
+            return render_template('octal.html', numero=numero, resultados=resultados)
+        except ValueError as e:
+            return render_template('octal.html', numero=numero, erro=str(e))
+            
+    return render_template('octal.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
