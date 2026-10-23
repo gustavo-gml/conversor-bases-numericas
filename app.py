@@ -5,6 +5,8 @@ from conversor_binario import converter_binario
 from conversor_hexadecimal import converter_hexadecimal
 from conversor_octal import converter_octal
 
+from conversor_decimal import converter_decimal
+
 app = Flask(__name__)
 
 
@@ -54,6 +56,26 @@ def pagina_hexadecimal():
 
     return render_template(
         'hexadecimal.html',
+        resultados=resultados,
+        erro=erro,
+        numero=numero
+    )
+    
+@app.route('/decimal', methods=['GET', 'POST'])
+def pagina_decimal():
+    resultados = None
+    erro = None
+    numero = ""
+
+    if request.method == 'POST':
+        numero = request.form.get('numero', '').strip()
+        try:
+            resultados = converter_decimal(numero)
+        except ValueError as e:
+            erro = str(e)
+
+    return render_template(
+        'decimal.html',
         resultados=resultados,
         erro=erro,
         numero=numero
