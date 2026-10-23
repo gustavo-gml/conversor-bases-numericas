@@ -31,6 +31,19 @@ def pagina_binario():
         numero=numero
     )
 
+@app.route('/octal', methods=['GET', 'POST'])
+def octal():
+    if request.method == 'POST':
+        numero = request.form.get('numero', '').strip()
+        
+        try:
+            resultados = converter_octal(numero)
+            return render_template('octal.html', numero=numero, resultados=resultados)
+        except ValueError as e:
+            return render_template('octal.html', numero=numero, erro=str(e))
+            
+    return render_template('octal.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
